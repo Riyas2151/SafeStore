@@ -3,12 +3,15 @@ import Title from '../components/Title'
 import CartTotal from '../components/CartTotal'
 import { assets } from '../assets/frontend_assets/assets'
 import { ShopContext } from '../context/ShopContext'
+import { toast } from 'react-toastify'
 
 const PlaceOrder = () => {
 
   const[method,setMethod] =useState('cod');
 
-  const {navigate}=useContext(ShopContext);
+  const {navigate,getCartAmount}=useContext(ShopContext);
+  const totalAmount = getCartAmount(); // ✅ Now you can use totalAmount
+
 
   return (
     <div className='flex flex-col sm:flex-row justify-between gap-4 pt-5 sm:pt-14 min-h-[80vh] border-t'>
@@ -47,10 +50,10 @@ const PlaceOrder = () => {
                 <img src={assets.stripe_logo} className='h-5 mx-4' alt="" />
               
             </div> */}
-            <div onClick={()=>setMethod('stripe')} className="flex items-center gap-3 border p-2 px-3 cursor-pointer">
-              <p className={`min-w-3.5 h-3.5 border rounded-full ${method === 'stripe'?'bg-green-400': ''}`}></p>
+            <div onClick={()=>setMethod('safefreeze')} className="flex items-center gap-3 border p-2 px-3 cursor-pointer">
+              <p className={`min-w-3.5 h-3.5 border rounded-full ${method === 'safefreeze'?'bg-green-400': '' }`}></p>
                 <img src={assets.image1} className='h-5 mx-4 object-contain' alt="" />
-              
+      
             </div>
             <div onClick={()=>setMethod('razorpay')} className="flex items-center gap-3 border p-2 px-3 cursor-pointer">
               <p className={`min-w-3.5 h-3.5 border rounded-full ${method === 'razorpay'?'bg-green-400': ''}`}></p>
@@ -65,9 +68,30 @@ const PlaceOrder = () => {
             
 
           </div>
+{/* to get safe description */}
+          {method === 'safefreeze' && (
+  <div className="bg-gray-100 p-4 rounded-lg mt-3 shadow-sm text-sm text-gray-700">
+    <h3 className="font-semibold mb-2">How SafeFreeze Works:</h3>
+    <ul className="list-disc list-inside space-y-1">
+      <li>You pay the amount, which gets <strong>frozen securely</strong>.</li>
+      <li>The seller ships your order.</li>
+      <li>Once you approve the delivery, the payment is <strong>released</strong>.</li>
+    </ul>
+    <p className="mt-2 text-gray-500">SafeFreeze ensures trust and transparency for both buyers and sellers.</p>
+  </div>
+)}
 
           <div className="w-full text-end mt-8">
-            <button onClick={()=>navigate('/orders')} className='bg-black text-white px-16 py-3 text-sm'>PLACE ORDER</button>
+            <button onClick={() => {
+    if (totalAmount > 0) {
+      if (method === 'safefreeze') {
+        navigate('/safecontract');
+      } else {
+        navigate('/orders');
+      }
+    } else {
+      toast("Add some amount bro 🤷‍♂️");
+    }}} className='bg-black text-white px-16 py-3 text-sm'>PLACE ORDER</button>
           </div>
         </div>
       </div>

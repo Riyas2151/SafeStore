@@ -32,7 +32,7 @@ const Footer = () => {
      </div>
      <div>
           <hr />
-          <p className='py-5 text-sm text-center'>CopyRight 2025@ forever.com -All Rights Reserved.</p>
+          <p className='py-5 text-sm text-center'>CopyRight 2025@  <a target='blank' href='http://safefreeze.in'>safefreeze.in</a> -All Rights Reserved.</p>
      </div>
     </div>
   )
