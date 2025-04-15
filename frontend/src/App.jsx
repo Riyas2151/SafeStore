@@ -14,6 +14,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import'react-toastify/dist/ReactToastify.css';
 import Orders from './pages/Orders';
 import Login from './pages/Login';
+import Safecontract from './pages/Safecontract';
 
 
 const App = () => {
@@ -33,6 +34,8 @@ const App = () => {
           <Route path='/place-order' element={<PlaceOrder />} />
           <Route path='/orders' element={<Orders/>} />
           <Route path='/login' element={<Login/>} />
+          {/* <Route path="/safecontract" element={<SafeContract />} /> */}
+          <Route path='/safecontract' element={<Safecontract/>}/>
         </Routes>
         <Footer/>
       </div>
