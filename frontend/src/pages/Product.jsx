@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/frontend_assets/assets';
 import RelatedProducts from '../components/RelatedProducts';
+import { toast } from 'react-toastify';
 
 const Product = () => {
   const {productId} =useParams();
@@ -72,6 +73,8 @@ const Product = () => {
             <p>Cash n delivery available</p>
             <p>Easy exchange and return policy within 7 days</p>
           </div>
+        
+
         </div>
       </div>
       {/* product-reviews */}

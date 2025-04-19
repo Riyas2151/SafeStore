@@ -7,7 +7,10 @@ import connectCloudinary from './config/cloudinary.js'
 import userRouter from './routes/userRoute.js'
 import productRouter from './routes/productRoute.js'
 import cartRouter from './routes/cartRoute.js'
-// import contractRoutes from './routes/contractRoutes.js'
+// const contractRoutes = require('./routes/contract.js');
+// import contractRoutes from './routes/contract.js';
+import contractRoutes from './routes/contract.js';
+
 // import connectDB from './config/mongodb.js'
 
 // App Config
@@ -26,7 +29,7 @@ app.use(cors())
 app.use('/api/cart',cartRouter)
 app.use('/api/user',userRouter)
 app.use('/api/product',productRouter)
-// app.use('/api', contractRoutes);
+app.use('/api/contract', contractRoutes);
 app.get('/',(req,res)=>{
      res.send('Radhe Radhe ji api workings')
 })

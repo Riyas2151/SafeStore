@@ -35,7 +35,10 @@ const App = () => {
           <Route path='/orders' element={<Orders/>} />
           <Route path='/login' element={<Login/>} />
           {/* <Route path="/safecontract" element={<SafeContract />} /> */}
-          <Route path='/safecontract' element={<Safecontract/>}/>
+          <Route
+  path="/safecontract"
+  element={<Safecontract product={{ _id: "123", name: "Sample", price: 1000 }} />}
+/>
         </Routes>
         <Footer/>
       </div>
