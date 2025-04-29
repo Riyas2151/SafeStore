@@ -17,7 +17,7 @@ const Contact = () => {
           <p className='text-gray-500'>Tel:9185753457 <br/>Email:riya@gmail.com</p>
           <p className='font-semibold text-xl text-gray-600'>Careers at Forever</p>
           <p className='text-gray-500'>Learn more about Our teams and job Opening</p>
-          <button className='border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500'>Explore Jobs</button>
+          <button className='border border-black px-8 py-4 text-lg hover:bg-black hover:text-white transition-all duration-500'>Mail Us</button>
         </div>
       </div>
       <NewsletterBox/>

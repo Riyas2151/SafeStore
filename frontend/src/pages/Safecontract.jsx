@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Safecontract = ({ product }) => {
   const [buyerEmail, setBuyerEmail] = useState('');
@@ -8,10 +9,7 @@ const Safecontract = ({ product }) => {
   const [contractId, setContractId] = useState('');
   const [deliveryDate, setDeliveryDate] = useState('');
   const [penalty, setPenalty] = useState('');
-
-  useEffect(() => {
-    console.log("Product received in SafeContract:", product);
-  }, [product]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const today = new Date();
@@ -33,23 +31,26 @@ const Safecontract = ({ product }) => {
     }
 
     const contractData = {
-      productId: product._id,
-      productName: product.name,
-      price: product.price,
+      productId: product._id || 'P123',
+      productName: product.name || 'Demo Product',
+      price: product.price || 1000,
       buyerEmail,
-      sellerEmail: 'seller@example.com', // Fixed for now
+      sellerEmail: 'seller@example.com',
       deliveryDate,
       penalty,
-      selectedRule
+      selectedRule,
     };
 
     try {
       const res = await axios.post('http://localhost:4000/api/contract', contractData);
       toast.success('Contract created and email sent!');
       setContractId(res.data.contractId);
+
+      // Pass data to DummyPay via state
+      navigate('/dummy-pay', { state: { ...contractData, contractId: res.data.contractId } });
     } catch (err) {
-      toast.error('Error sending contract email.');
       console.error(err);
+      toast.error('Error sending contract email.');
     }
   };
 
@@ -80,12 +81,11 @@ const Safecontract = ({ product }) => {
 
         <button type="submit" className="bg-black text-white py-2 rounded hover:bg-gray-800">Send Contract Email</button>
       </form>
-
-      {contractId && (
-        <p className="text-green-600 mt-4">Contract ID: <strong>{contractId}</strong></p>
-      )}
     </div>
   );
 };
 
 export default Safecontract;
+
+
+

@@ -30,6 +30,9 @@ app.use('/api/cart',cartRouter)
 app.use('/api/user',userRouter)
 app.use('/api/product',productRouter)
 app.use('/api/contract', contractRoutes);
+import paymentRoutes from './routes/payment.js';
+app.use('/api/payment', paymentRoutes);
+
 app.get('/',(req,res)=>{
      res.send('Radhe Radhe ji api workings')
 })
