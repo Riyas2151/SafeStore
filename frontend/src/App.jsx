@@ -16,6 +16,8 @@ import Orders from './pages/Orders';
 import Login from './pages/Login';
 import Safecontract from './pages/Safecontract';
 import DummyPay from './components/DummyPay';
+import Dispute from './pages/Dispute';
+import TrackProduct from './pages/TrackProduct.jsx';
 
 
 
@@ -38,12 +40,14 @@ const App = () => {
           <Route path='/orders' element={<Orders/>} />
           <Route path='/login' element={<Login/>} />
           <Route path="/dummy-pay" element={<DummyPay />} />
+          <Route path='/Dispute' element={<Dispute/>} />
 
           {/* <Route path="/safecontract" element={<SafeContract />} /> */}
           <Route
   path="/safecontract"
   element={<Safecontract product={{ _id: "123", name: "Sample", price: 1000 }} />}
 />
+<Route path='/track-product' element={<TrackProduct />} />
         </Routes>
         <Footer/>
       </div>
